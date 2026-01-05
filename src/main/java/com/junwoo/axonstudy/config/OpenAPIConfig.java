@@ -1,0 +1,27 @@
+package com.junwoo.axonstudy.config;
+
+import io.swagger.v3.oas.models.ExternalDocumentation;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.info.License;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ *
+ * @author junnukim1007gmail.com
+ * @date 26. 1. 5.
+ */
+@Configuration
+public class OpenAPIConfig {
+
+    @Bean
+    OpenAPI openAPI() {
+        return new OpenAPI()
+                .info(new Info().title("Axon framework API")
+                        .description("Axon Sample Application")
+                        .version("v0.0.1")
+                        .license(new License().name("Apache 2.0").url("http://springdoc.org"))
+                );
+    }
+}

@@ -6,8 +6,24 @@ spring:
     url: jdbc:mysql://localhost:3306/axon_study_db?useSSL=false&serverTimezone=Asia/Seoul
     username: axon_study_user
     password: axon_study_pass
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
       ddl-auto: create
-    show-sql: true
+    show-sql: false
+
+axon:
+  serializer:
+    general: xstream
+  axonserver:
+    servers: localhost:8124
+
+springdoc:
+  packages-to-scan: com.junwoo.axonstudy.controller
+  paths-to-match: /**
+
+logging:
+  level:
+    com.junwoo.axonstudy: info
+    org.axonframework: info
