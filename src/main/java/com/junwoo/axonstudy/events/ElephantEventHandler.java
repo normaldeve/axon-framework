@@ -7,7 +7,10 @@ import com.junwoo.axonstudy.repository.ElephantRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
+import org.axonframework.config.ProcessingGroup;
+import org.axonframework.eventhandling.AllowReplay;
 import org.axonframework.eventhandling.EventHandler;
+import org.axonframework.eventhandling.ResetHandler;
 import org.axonframework.eventhandling.gateway.EventGateway;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +23,8 @@ import java.util.Optional;
  */
 @Slf4j
 @Component
+@ProcessingGroup("elephant")
+@AllowReplay
 @RequiredArgsConstructor
 public class ElephantEventHandler {
 
@@ -97,6 +102,12 @@ public class ElephantEventHandler {
         Optional<Elephant> optionalElephant = elephantRepository.findById(id);
 
         return optionalElephant.orElse(null);
+    }
+
+    @ResetHandler
+    private void replayAll() {
+        log.info("[@ResetHandler] Executing replayAll");
+        elephantRepository.deleteAll();
     }
 
 }
