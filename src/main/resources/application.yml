@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: axon-study
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/axon_study_db?useSSL=false&serverTimezone=Asia/Seoul
+    username: axon_study_user
+    password: axon_study_pass
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
